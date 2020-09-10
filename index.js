@@ -26,6 +26,7 @@ export default class Ripple extends PureComponent {
     disabled: false,
 
     onRippleAnimation: (animation, callback) => animation.start(callback),
+    useNativeDriver: false
   };
 
   static propTypes = {
@@ -43,6 +44,7 @@ export default class Ripple extends PureComponent {
     disabled: PropTypes.bool,
 
     onRippleAnimation: PropTypes.func,
+    useNativeDriver: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -88,7 +90,7 @@ export default class Ripple extends PureComponent {
 
   onPress(event) {
     let { ripples } = this.state;
-    let { onPress, rippleSequential } = this.props;
+    let { onPress, rippleSequential, useNativeDriver } = this.props;
 
     if (!rippleSequential || !ripples.length) {
       if ('function' === typeof onPress) {
@@ -138,6 +140,7 @@ export default class Ripple extends PureComponent {
       rippleCentered,
       rippleSize,
       onRippleAnimation,
+      useNativeDriver
     } = this.props;
 
     let w2 = 0.5 * width;
